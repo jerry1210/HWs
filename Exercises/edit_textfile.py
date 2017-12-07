@@ -21,13 +21,20 @@ line 5: value5
 
 """
 
-def insert_string(in_file, line, insertion):
+
+def insert_string(in_file, line, position, insertion):
     """ Return a list of lines after inserting a word in a specific line. """
-
-    # your code here
-
+    file = open(in_file, 'r')
+    text = file.readlines()
+    file.close()
+    text[line-1] = text[line-1][:position] + insertion + ' ' + text[line-1][position:]
+    return ''.join(text)
 
 def write_to(outfile, from_infile):
     """ Write to a new file lines returned by the above function """
+    file = open(outfile, 'w')
+    file.write(from_infile)
+    file.close()
 
-    # your code here
+
+write_to('output.txt', insert_string('input.txt', 3, 5, 'NAME'))
