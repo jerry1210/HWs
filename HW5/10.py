@@ -8,3 +8,17 @@ Bonus: Read extension and meaning from a configuration file.
 '''
 
 
+import os
+
+def func(*extensions):
+    if 'c' in extensions:
+        extensions += 'h',
+    if 'py' in extensions:
+        extensions += 'pyc',
+    if 'pl' in extensions:
+        extensions += 'pm',
+
+    return '\n'.join([item for item in os.listdir(os.curdir) for extension in extensions if item.endswith(extension)])
+
+
+print(func('c', 'py', 'txt'))
