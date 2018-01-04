@@ -9,6 +9,6 @@ def average_grade(lst):
     """
 
     # your code here
-    return [[lst[i][0], sum(lst[i][1:])/float(len(lst[i][1:]))] for i in range(len(lst))]
+    return [[lst[i][0], sum(lst[i][1:])/len(lst[i][1:])] for i in range(len(lst))]
 
-print(average_grade([['Bob', 56, 80, 72, 90], ['Alice', 60, 88, 44, 70]]))
+print(average_grade([['Bob', 56, 80, 72, 80], ['Alice', 60, 88, 44, 70]]))

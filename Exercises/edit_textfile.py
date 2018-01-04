@@ -30,11 +30,16 @@ def insert_string(in_file, line, position, insertion):
     text[line-1] = text[line-1][:position] + insertion + ' ' + text[line-1][position:]
     return ''.join(text)
 
+
 def write_to(outfile, from_infile):
     """ Write to a new file lines returned by the above function """
-    file = open(outfile, 'w')
-    file.write(from_infile)
-    file.close()
+    # file = open(outfile, 'w')
+    # file.write(from_infile)
+    # file.close()
+
+
+    with open(outfile, 'w') as file:
+        file.write(from_infile)
 
 
 write_to('output.txt', insert_string('input.txt', 3, 5, 'NAME'))
