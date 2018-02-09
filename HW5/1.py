@@ -22,6 +22,7 @@ def after_5(func):
             func()
     return wrapper
 
+
 @after_5
 def doit():
     print('Yo!')

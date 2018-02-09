@@ -10,14 +10,27 @@
 '''
 
 
-def flatten_dict(input_dict):
-    result = dict()
+def flatten_dict(input_dict, result=None):
+    """
+    >>> flatten_dict({'a': 1, 'b': {'x': 2, 'y': 3}, 'c': 4})
+    {'a': 1, 'b.x': 2, 'b.y': 3, 'c': 4}
+
+    >>> flatten_dict({'a': 1, 'b': {'x': 2, 'y': {'z': 3}}, 'c': 4})
+    {'a': 1, 'b.x': 2, 'b.y.z': 3, 'c': 4}
+
+    :param input_dict:
+    :return:
+    """
+    if result is None:
+        result = dict()
+
     for key, value in input_dict.items():
         if isinstance(value, dict):
-            result.update({'.'.join([str(key), k]):v for k,v in value.items()})
+            flatten_dict({'.'.join([str(key), k]): v for k, v in value.items()}, result=result)
         else:
             result.update({key: value})
     return result
 
 
-print(flatten_dict({'a': 1, 'b': {'x': 2, 'y': 3}, 'c': 4}))
+if __name__ == '__main__':
+    print(flatten_dict({'a': 1, 'b': {'x': 2, 'y': {'z': 3}}, 'c': 4}))

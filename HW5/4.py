@@ -13,16 +13,18 @@ same(10)
 
 
 def returns(exected_type):
-    def decoraror(func):
+    def decorator(func):
         def wrapper(*args):
-            assert isinstance(func(*args), exected_type), '{} expected'.format(exected_type)
+            if not isinstance(func(*args), exected_type):
+                raise AssertionError('{} expected'.format(exected_type.__name__))
+            # assert isinstance(func(*args), exected_type), '{} expected'.format(exected_type)
             print(func(*args))
         return wrapper
-    return decoraror
+    return decorator
 
 @returns(str)
 def same(word):
     return word
 
 
-same('word')
+same(0)

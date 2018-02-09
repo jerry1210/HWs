@@ -7,8 +7,15 @@
 
 
 def swap_case(input_string):
+    '''
+    >>> swap_case('Pythonist 2')
+    'pYTHONIST 2'
+
+    >>> swap_case('Www.HackerRank.com')
+    'wWW.hACKERrANK.COM'
+
+    :param input_string:
+    :return:
+    '''
+
     return ''.join([item.upper() if item.islower() else item.lower() for item in input_string])
-
-
-string = 'Pythonist 2'
-print(swap_case(string))

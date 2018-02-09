@@ -13,15 +13,16 @@ pow('x', 10)
 def accepts(*types):
     def decorator(func):
         def wrapper(*args):
-            assert {isinstance(item[0], item[1]) for item in zip(args, types)} == {True}, \
-                'Arguments with wrong types passed'
+            if {isinstance(arg, types[0])|isinstance(arg, types[1]) for arg in args} != {True}:
+                raise TypeError('Arguments with wrong types passed')
             return func(*args)
         return wrapper
     return decorator
+
 
 @accepts(float, int)
 def pow(base, exp):
     print(base**exp)
 
 
-pow(7.0, 2)
+pow('', 2)
